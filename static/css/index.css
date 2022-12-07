@@ -1,0 +1,45 @@
+*{
+    text-align: center;
+}
+button {
+    padding: 0.9rem;
+    margin: 0.5rem;
+    margin-top: 3rem;
+    min-width: 100px;
+    cursor: pointer;
+    border: 5px #eee;
+    border-radius: 3.5rem;
+    background-color: #19345d;
+    color: white;
+    font-size: 0.9rem;
+}
+
+button:hover {
+    background-color: #192639;
+    color: #eee;
+  }
+
+.container {
+    max-width: 15%;
+    max-height: 15%;
+    margin-top: 50rem;
+    margin: auto;
+    position: relative;
+
+}
+
+.door {
+    max-height: 15rem;
+}
+
+#door_open{
+    display: none;
+}
+
+#door_closed{
+    display: block;
+}
+
+#message {
+    font-size: 2rem;
+}

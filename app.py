@@ -13,7 +13,7 @@ def index():
         with open('audio.wav', 'wb') as audio:
             f.save(audio)
         print('file uploaded successfully')
-
+        
         return render_template('index.html', request="POST")
     else:
         return render_template("index.html")
