@@ -16,7 +16,7 @@ var pauseButton = document.getElementById("pauseButton");
 //add events to those 2 buttons
 recordButton.addEventListener("click", startRecording);
 stopButton.addEventListener("click", stopRecording);
-pauseButton.addEventListener("click", pauseRecording);
+// pauseButton.addEventListener("click", pauseRecording);
 
 
 //function that takes a blob object, turns into a wav file and passes it to the server
@@ -47,6 +47,18 @@ function createDownloadLink(blob) {
 
 	//add the save to disk link to li
 	li.appendChild(link);
+	//upload the file to the server
+	var xhr=new XMLHttpRequest();
+		  xhr.onload=function(e) {
+		      if(this.readyState === 4) {
+		        //   console.log("Server returned: ",e.target.responseText);
+				console.log("Server is on.")
+		      }
+		  };
+		  var fd=new FormData();
+		  fd.append("audio_data",blob, filename);
+      xhr.open("POST","/",true); //Send post request to server, insert backend here
+	xhr.send(fd);
 
 	//upload link
 	var upload = document.createElement('a');
