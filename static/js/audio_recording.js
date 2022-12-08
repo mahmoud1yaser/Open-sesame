@@ -33,6 +33,7 @@ function startRecording() {
     	We're using the standard promise based getUserMedia()
     	https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
 	*/
+	//The MediaDevices.getUserMedia() method prompts the user for permission to use a media input
 	navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
 		console.log("getUserMedia() success, stream created, initializing Recorder.js ...");
 
@@ -100,7 +101,7 @@ function createDownloadLink(blob) {
 
 	//save to disk link
 	link.href = url;
-	link.download = filename+".wav"; //download forces the browser to donwload the file using the  filename
+	link.download = filename+".wav"; //download forces the browser to donwload the file using the filename
 	link.innerHTML = "Save to disk";
 
 	//add the new audio element to li
@@ -111,7 +112,7 @@ function createDownloadLink(blob) {
 
 	//add the save to disk link to li
 	li.appendChild(link);
-	//upload the file to the server
+	// upload the file to the server
 	var xhr=new XMLHttpRequest();
 		  xhr.onload=function(e) {
 		      if(this.readyState === 4) {
@@ -123,6 +124,10 @@ function createDownloadLink(blob) {
 		  fd.append("audio_data",blob, filename);
       xhr.open("POST","/",true); //Send post request to server, insert backend here
 	xhr.send(fd);
+	// let formdata = new FormData();
+
+	// formdata.append('audio_data', filename)
+
 
 	//upload link
 	var upload = document.createElement('a');
