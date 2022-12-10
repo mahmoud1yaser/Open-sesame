@@ -90,6 +90,9 @@ border-radius: 1.5rem;
     height: 79vh;
 }
 
+.infographic {
+    max-width: 30vw;
+}
 
 /* message stuff */
 #message {
