@@ -4,13 +4,14 @@ URL = window.URL || window.webkitURL;
 var gumStream; 						//stream from getUserMedia()
 var rec; 							//Recorder.js object
 var input; 							//MediaStreamAudioSourceNode we'll be recording
+let recordLength_ms = 4000;
 
 // shim for AudioContext when it's not avb.
 var AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioContext //audio context to help us record
 var recordButton = document.getElementById("recordButton");
-var door_open_img = document.getElementById("door_open");
-var door_closed_img = document.getElementById("door_closed");
+// var door_open_img = document.getElementById("door_open");
+// var door_closed_img = document.getElementById("door_closed");
 var message_box = document.getElementById("message")
 //add events to those 2 buttons
 recordButton.addEventListener("click", startRecording);
@@ -63,7 +64,7 @@ function startRecording() {
 
 		console.log("Recording started");
 		//wait for 5000 millisecond then stop the recording
-		setTimeout(stopRecording, 5000);
+		setTimeout(stopRecording, recordLength_ms);
 	}).catch(function(err) {
 	  	//enable the record button if getUserMedia() fails
     	recordButton.disabled = false;
@@ -117,30 +118,25 @@ function createDownloadLink(blob) {
         cache: false,
         processData: false,
         success: function(res) {
-			if(res == "welcome"){
-				openDoor();
-
-			}
-			else{closeDoor();}
 			$('#message').text(res).show()
 			// alert(res)
         },
     });
 
-	recordingsList.appendChild(li);
+	// recordingsList.appendChild(li); //commented, used for testing
 }
 
-function openDoor(){
-	console.log("opening the door")
-	door_closed_img.style.display = 'none'
-	door_open_img.style.display = 'block'
-}
+// function openDoor(){
+// 	console.log("opening the door")
+// 	door_closed_img.style.display = 'none'
+// 	door_open_img.style.display = 'block'
+// }
 
-function closeDoor() {
-	console.log("closing the door")
-	door_closed_img.style.display = 'block'
-	door_open_img.style.display = 'none'
-}
+// function closeDoor() {
+// 	console.log("closing the door")
+// 	door_closed_img.style.display = 'block'
+// 	door_open_img.style.display = 'none'
+// }
 
 function display_message(txt) {
 	message_box.innerHTML=txt;
