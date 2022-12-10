@@ -69,7 +69,7 @@ def index():
         if word ==0:
            return  "Not allowed"
         elif word ==1:
-            return "open the door"
+            return "welcome"
         
     else:
         return render_template("index.html")

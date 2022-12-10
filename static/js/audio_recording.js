@@ -75,6 +75,7 @@ function stopRecording() {
 	// console.log("stopButton clicked");
 	//tell the recorder to stop the recording
 	rec.stop();
+	recordButton.disabled = false;
 
 	//stop microphone access
 	gumStream.getAudioTracks()[0].stop();
@@ -87,7 +88,7 @@ function createDownloadLink(blob) {
 
 	var url = URL.createObjectURL(blob);
 	var au = document.createElement('audio');
-	var li = document.createElement('li');
+	var li = document.createElement('div');
 	var link = document.createElement('a');
 
 	var filename = new Date().toISOString();
@@ -116,8 +117,13 @@ function createDownloadLink(blob) {
         cache: false,
         processData: false,
         success: function(res) {
-			// $('#message').append(res)
-			alert(res)
+			if(res == "welcome"){
+				openDoor();
+
+			}
+			else{closeDoor();}
+			$('#message').text(res).show()
+			// alert(res)
         },
     });
 
