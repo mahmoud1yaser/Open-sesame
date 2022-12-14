@@ -53,15 +53,39 @@ def index():
         
         
         y, s = librosa.load("audio.wav")
-        audio, _ = librosa.effects.trim(y)
+        audio, _ = librosa.effects.trim(y,top_db=30)
         
-        mfcc = librosa.feature.mfcc(y=audio, sr=s)
+        mfcc = librosa.feature.mfcc(y=audio, sr=s,n_fft=1024)
     
         
         data=[]
+         #features
+        chromagram = librosa.feature.chroma_stft(audio, sr=s,n_fft=1024)
+        data.append(chromagram.mean())
+        # data.append(chromagram.var())
+    
+        rms=librosa.feature.rms(audio, S=s,frame_length=1024)
+        data.append(rms.mean())
+        # data.append(rms.var())
+    
+        spectral_bandwidth=librosa.feature.spectral_bandwidth(audio, sr=s,n_fft=1024)
+        data.append(spectral_bandwidth.mean())
+        # data.append(spectral_bandwidth.var())
+    
+        spectral_centroid=librosa.feature.spectral_centroid(audio, sr=s,n_fft=1024)
+        data.append(spectral_centroid.mean())
+        # data.append(spectral_centroid.var())
+    
+        spectral_rolloff=librosa.feature.spectral_rolloff(audio, sr=s,n_fft=1024)
+        data.append(spectral_rolloff.mean())
+        # data.append(spectral_rolloff.var())
+    
+        zero_crossing_rate=librosa.feature.zero_crossing_rate(audio,frame_length=1024)
+        data.append(zero_crossing_rate.mean())
+        # data.append(zero_crossing_rate.var())
         for i in range(20):
             data.append(mfcc[i].mean()) 
-            data.append(mfcc[i].var())
+            # data.append(mfcc[i].var())
         input_data_as_numpy_array  = np.asarray(data)
         input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
         std_data = scaler.transform(input_data_reshaped)
