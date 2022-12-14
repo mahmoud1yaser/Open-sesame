@@ -3,6 +3,10 @@
     font-family: "Century Gothic", Arial, sans-serif;
     text-align: center;
   }
+  
+p {
+    max-width: 100%;
+}
 
 button {
     
@@ -26,7 +30,7 @@ button:hover {
 .page-container {
     width: 100%;
     min-height: 100%;
-    padding: 2%;
+    padding: 1%;
     box-sizing: border-box;
     overflow: hidden;
 
@@ -48,6 +52,10 @@ button:hover {
     font-weight: bold;
     display: block;
     text-align: center;
+}
+
+#mic-section {
+    height: 100%;
 }
 
 .mid-section {
@@ -72,12 +80,12 @@ button:hover {
     padding: 0.5rem;
     border-radius: 2rem;
     text-align: center;
-    max-width: 33vw;
+    min-width: 33vw;
     height: 79vh;
 }
 
 .middle-section {
-    max-width: 33vw;
+    min-width: 33vw;
     height: 80vh;
     display: flex;
     justify-content: center;
@@ -86,7 +94,7 @@ button:hover {
     padding: 0.5rem;
     border-radius: 2rem;
     text-align: center;
-    max-width: 33vw;
+    min-width: 33vw;
     height: 79vh;
 }
 
@@ -94,6 +102,9 @@ button:hover {
     max-width: 30vw;
 }
 
+.left-infographic {
+    max-height:15vw;
+}
 /* message stuff */
 #message {
     font-size: 2rem;

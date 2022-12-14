@@ -13,47 +13,45 @@
 
     <div class="page-container">
       <!-- Title for page -->
-      <h1 class="title">Open Sesame</h1>
+      <h1 class="title">Open Sesame: A voice and speaker recognition system using machine learning</h1>
       <!-- Rest of the page -->
       <div class="mid-section">
         <!-- Left section -->
         <div id="left-section" class="left-section">
          <div class="section-container">
-            <img src="../static/assets/trial.gif" alt="img" class="infographic">
-            <h2 class="title">Mfcc</h2>
-            <p>Hello there, I am just taking up some space using text, hopefully this doesn't
-              ruin the projcet :)
-              Hello there, I am just taking up some space using text, hopefully this doesn't
-              ruin the projcet :)Hello there, I am just taking up some space using text, hopefully this doesn't
-              ruin the projcet :)Hello there, I am just taking up some space using text, hopefully this doesn't
-              ruin the projcet :)Hello there, I am just taking up some space using text, hopefully this doesn't
-              ruin the projcet :)Hello there, I am just taking up some space using text, hopefully this doesn't
-              ruin the projcet :)Hello there, I am just taking up some space using text, hopefully this doesn't
-              ruin the projcet :)
+          <h1>Feature engineering</h1>
+            <img src="../static/assets/trial3.gif" alt="img" class="left-infographic">
+            <h2 class="title">Mel Frequency Cepstral Co-efficients</h2>
+            <p>
+            Steps for mfcc: <br>
+                Preemphasis ->windowing -> DFT-> Mel Filterbank -> Applying log -> DCT (Discrete Cosine transform) -> IDFT -> Feature extraction
             </p>
+            <h2 class="title">Melspectrogram/ Band energy ratio</h2>
+            <h2 class="title">Spectral centroid / Root mean square</h2>
+            <h2 class="title"></h2>
+            <!-- <img src="../static/assets/melspec.png" alt="img" class="left-infographic"> -->
          </div>
         </div>
 
         <!-- Middle section -->
         <div class="middle-section">
           <div class="section-container">
-            <h2 class="title">Model 2</h2>
-            <p>Hello there, I am just taking up some space using text, hopefully this doesn't
-              ruin the projcet :)
-              Hello there, I am just taking up some space using text, hopefully this doesn't
-              ruin the projcet :)Hello there, I am just taking up some space using text, hopefully this doesn't
-              ruin the projcet :)Hello there, I am just taking up some space using text, hopefully this doesn't
-              ruin the projcet :)Hello there, I am just taking up some space using text, hopefully this doesn't
-              ruin the projcet :)Hello there, I am just taking up some space using text, hopefully this doesn't
-              ruin the projcet :)Hello there, I am just taking up some space using text, hopefully this doesn't
-              ruin the projcet :)
+            <h2 class="title">Machine learning model</h2>
+            <p>using a random forest framework to assess the features, <br>
+              we acheieved an accuracy of 96%
+              with a cross validation score of 92%.<br> 
+              After testing a vareity of models such as: SVC, Linear regression, <br>
+              decision tree, we found that the forest had the highest accruacy during testing. <br>
             </p>
+         </div>
+          <div class="section-container">
+           <img src="../static/assets/trial4.gif" class="infographic" alt="">
          </div>
         </div>
 
         <!-- Right section of the website -->
         <div id="right-section" class="right-options">
-          <div class="section-container">
+          <div id="mic-section" class="section-container">
             <div id="model-section">
               <div class="container">
                 <!-- <img src="../static/assets/door_closed.jpg" alt="door_closed" class="door" id="door_closed">
@@ -65,9 +63,8 @@
               </div>
               <p id="message"></p>
             </div>
-            <h2 class="title">Model 2</h2>
-            <p>Hello there, I am just taking up some space using text, hopefully this doesn't
-              ruin the projcet :)
+            <h2 class="title">Note</h2>
+            <p>Start talking as soon as you see "Recording has started..." message
             </p>
          </div>
         </div>
