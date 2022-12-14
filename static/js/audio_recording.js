@@ -4,7 +4,7 @@ URL = window.URL || window.webkitURL;
 var gumStream; 						//stream from getUserMedia()
 var rec; 							//Recorder.js object
 var input; 							//MediaStreamAudioSourceNode we'll be recording
-let recordLength_ms = 4000;
+let recordLength_ms = 2000;
 
 // shim for AudioContext when it's not avb.
 var AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -18,7 +18,7 @@ recordButton.addEventListener("click", startRecording);
 
 //original function that starts the recording 
 function startRecording() {
-
+	display_message("Recording in progress...")
 	console.log("recordButton clicked");
 	/*
 		Simple constraints object, for more advanced audio features see
