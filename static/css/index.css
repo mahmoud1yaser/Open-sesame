@@ -21,25 +21,25 @@ button {
 button:hover {
     background-color: #192639;
     color: #eee;
-  }
+}
 
 .page-container {
-width: 100%;
-min-height: 100%;
-padding: 2%;
-box-sizing: border-box;
-overflow: hidden;
+    width: 100%;
+    min-height: 100%;
+    padding: 2%;
+    box-sizing: border-box;
+    overflow: hidden;
 
-/* background-color: #EEE; */
+    /* background-color: #EEE; */
 }
 
 .opt-bar {
-padding: 1% 2% 0;
-min-width: 80%;
-height: 10%;
-display: inline;
-box-sizing: border-box;
-border-radius: 1.5rem;
+    padding: 1% 2% 0;
+    min-width: 80%;
+    height: 10%;
+    display: inline;
+    box-sizing: border-box;
+    border-radius: 1.5rem;
 }
 
 .title {
@@ -72,12 +72,12 @@ border-radius: 1.5rem;
     padding: 0.5rem;
     border-radius: 2rem;
     text-align: center;
-    min-width: 33vw;
+    max-width: 33vw;
     height: 79vh;
 }
 
 .middle-section {
-    min-width: 33vw;
+    max-width: 33vw;
     height: 80vh;
     display: flex;
     justify-content: center;
@@ -86,7 +86,7 @@ border-radius: 1.5rem;
     padding: 0.5rem;
     border-radius: 2rem;
     text-align: center;
-    min-width: 33vw;
+    max-width: 33vw;
     height: 79vh;
 }
 
