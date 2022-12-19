@@ -71,6 +71,6 @@ def text(audio):
     std_data = scaler.transform(input_data_reshaped)
     word=model.predict(std_data)
     if word ==0:
-        return ("other")
+        return ("Wrong password!")
     elif word ==1:
-        return ("welcome")
+        return ("Welcome! ")
