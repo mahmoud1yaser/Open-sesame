@@ -7,7 +7,7 @@
     <!-- <script src="https://markjivko.com/dist/recorder.js"></script> -->
     <script src="../static/js/recorder.js"></script>
     <link rel="stylesheet" type="text/css" href="../static/css/index.css">
-    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css'>    
+    <!-- <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css'>     -->
   </head>
   <body>
 
@@ -22,10 +22,6 @@
           <h1>Feature engineering</h1>
             <img src="../static/assets/trial3.gif" alt="img" class="left-infographic">
             <h2 class="title">Mel Frequency Cepstral Co-efficients</h2>
-            <p>
-            Steps for mfcc: <br>
-                Preemphasis ->windowing -> DFT-> Mel Filterbank -> Applying log -> DCT (Discrete Cosine transform) -> IDFT -> Feature extraction
-            </p>
             <h2 class="title">Melspectrogram/ Band energy ratio</h2>
             <h2 class="title">Spectral centroid / Root mean square</h2>
             <h2 class="title"></h2>
@@ -50,21 +46,25 @@
         </div>
 
         <!-- Right section of the website -->
-        <div id="right-section" class="right-options">
+        <div id="right-section" class="right-section">
           <div id="mic-section" class="section-container">
             <div id="model-section">
-              <div class="container">
+              <div class="section-container">
                 <!-- <img src="../static/assets/door_closed.jpg" alt="door_closed" class="door" id="door_closed">
                 <img src="../static/assets/door_open.jpg" alt="door_open" class="door" id="door_open"> -->
                 <p class="title"> Click to enter your password</p>
-                <button id="recordButton" class="bi bi-mic" style="font-size:6rem"></button> 
+                <!-- <button id="recordButton" class="bi bi-mic" style="font-size:6rem"></button>  -->
+                <div id="recordButton">
+                  <img src="../static/assets/microphone_icon.png" alt="" style="width: 10vw;" class="effect">
+                </div>
                 <div id="recordingsList"></div>
                 <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
               </div>
               <p id="message"></p>
             </div>
             <h2 class="title">Note</h2>
-            <p>Start talking as soon as you see "Recording has started..." message
+            <p>Start talking as soon as <br>
+              you see "Recording has started..." message
             </p>
          </div>
         </div>
