@@ -3,6 +3,10 @@
     font-family: "Century Gothic", Arial, sans-serif;
     text-align: center;
   }
+  
+p {
+    max-width: 100%;
+}
 
 button {
     
@@ -21,25 +25,25 @@ button {
 button:hover {
     background-color: #192639;
     color: #eee;
-  }
+}
 
 .page-container {
-width: 100%;
-min-height: 100%;
-padding: 2%;
-box-sizing: border-box;
-overflow: hidden;
+    width: 100%;
+    min-height: 100%;
+    /* padding: 1%; */
+    box-sizing: border-box;
+    overflow: hidden;
 
-/* background-color: #EEE; */
+    /* background-color: #EEE; */
 }
 
 .opt-bar {
-padding: 1% 2% 0;
-min-width: 80%;
-height: 10%;
-display: inline;
-box-sizing: border-box;
-border-radius: 1.5rem;
+    padding: 1% 2% 0;
+    min-width: 80%;
+    height: 10%;
+    display: inline;
+    box-sizing: border-box;
+    border-radius: 1.5rem;
 }
 
 .title {
@@ -49,6 +53,20 @@ border-radius: 1.5rem;
     display: block;
     text-align: center;
 }
+
+#mic-section {
+    height: 85%;
+}
+#recordButton{
+    cursor: pointer;
+}
+
+#recordButton:active{
+    size: 90%;    
+    box-shadow: 1px,1px,1px,inset, black;
+
+}
+
 
 .mid-section {
     height: 80vh;
@@ -69,7 +87,7 @@ border-radius: 1.5rem;
   border-radius: 0.9rem;
 }
 .left-section {
-    padding: 0.5rem;
+    /* padding: 0.5rem; */
     border-radius: 2rem;
     text-align: center;
     min-width: 33vw;
@@ -77,20 +95,28 @@ border-radius: 1.5rem;
 }
 
 .middle-section {
+    /* padding: 0.5rem; */
+    border-radius: 2rem;
     min-width: 33vw;
     height: 80vh;
     display: flex;
     justify-content: center;
 }
 .right-section {
-    padding: 0.5rem;
+    /* padding: 0.5rem; */
     border-radius: 2rem;
     text-align: center;
     min-width: 33vw;
     height: 79vh;
 }
 
+.infographic {
+    max-width: 30vw;
+}
 
+.left-infographic {
+    max-height:15vw;
+}
 /* message stuff */
 #message {
     font-size: 2rem;

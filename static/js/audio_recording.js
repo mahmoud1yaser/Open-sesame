@@ -4,7 +4,7 @@ URL = window.URL || window.webkitURL;
 var gumStream; 						//stream from getUserMedia()
 var rec; 							//Recorder.js object
 var input; 							//MediaStreamAudioSourceNode we'll be recording
-let recordLength_ms = 4000;
+let recordLength_ms = 2000;
 
 // shim for AudioContext when it's not avb.
 var AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -18,7 +18,7 @@ recordButton.addEventListener("click", startRecording);
 
 //original function that starts the recording 
 function startRecording() {
-
+	display_message("Recording in progress...")
 	console.log("recordButton clicked");
 	/*
 		Simple constraints object, for more advanced audio features see
@@ -36,17 +36,14 @@ function startRecording() {
 	*/
 	navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
 		console.log("getUserMedia() success, stream created, initializing Recorder.js ...");
-
 		/*
 			create an audio context after getUserMedia is called
 			sampleRate might change after getUserMedia is called, like it does on macOS when recording through AirPods
 			the sampleRate defaults to the one set in your OS for your playback device
 		*/
 		audioContext = new AudioContext();
-
 		//update the format
 		// document.getElementById("formats").innerHTML="Format: 1 channel pcm @ "+audioContext.sampleRate/1000+"kHz"
-
 		/*  assign to gumStream for later use  */
 		gumStream = stream;
 
@@ -110,15 +107,18 @@ function createDownloadLink(blob) {
 	fd.append("audio_data",blob, filename);
     xhr.open("POST","/",true); //Send post request to server, insert backend here
 	xhr.send(fd);
+	
 	$.ajax({
         type: 'POST',
         url: 'http://127.0.0.1:5000/',
         data: fd,
         contentType: false,
         cache: false,
+		async:false,
         processData: false,
         success: function(res) {
-			$('#message').text(res).show()
+			// $('#message').text(res).show()
+			display_message(res) //send the response to the message element
 			// alert(res)
         },
     });
@@ -139,5 +139,8 @@ function createDownloadLink(blob) {
 // }
 
 function display_message(txt) {
+	//display message from request into the website
 	message_box.innerHTML=txt;
+
+
 }
