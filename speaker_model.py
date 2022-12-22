@@ -61,3 +61,7 @@ def speaker(audio):
         return ("Ahmed")
     elif speaker ==3:
         return ("Maha")
+    elif speaker ==4:
+        return("Mohmoud")
+    elif speaker ==5:
+        return("others")

@@ -6,7 +6,7 @@ var rec; 							//Recorder.js object
 var input; 							//MediaStreamAudioSourceNode we'll be recording
 //soft-coded stuff
 let recordLength_ms = 2000; //variable that controls the length of the recorded sample
-let left_img_path = "../static/assets/melspec.png" //path for left img
+let left_img_path = "../static/assets/Feature_visuals.png" //path for left img
 let mid_img_path = "../static/assets/melspec.png" //path for mid img
 
 // shim for AudioContext when it's not avb.

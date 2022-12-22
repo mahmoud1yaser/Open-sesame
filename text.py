@@ -73,4 +73,4 @@ def text(audio):
     if word ==0:
         return ("Wrong password!")
     elif word ==1:
-        return ("Welcome! ")
+        return ("Right password")
