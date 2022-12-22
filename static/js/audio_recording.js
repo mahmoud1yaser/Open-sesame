@@ -4,12 +4,17 @@ URL = window.URL || window.webkitURL;
 var gumStream; 						//stream from getUserMedia()
 var rec; 							//Recorder.js object
 var input; 							//MediaStreamAudioSourceNode we'll be recording
-let recordLength_ms = 2000;
+//soft-coded stuff
+let recordLength_ms = 2000; //variable that controls the length of the recorded sample
+let left_img_path = "../static/assets/melspec.png" //path for left img
+let mid_img_path = "../static/assets/melspec.png" //path for mid img
 
 // shim for AudioContext when it's not avb.
 var AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioContext //audio context to help us record
 var recordButton = document.getElementById("recordButton");
+var left_infographic = document.getElementById("left-figure")
+var mid_infographic = document.getElementById("mid-figure")
 // var door_open_img = document.getElementById("door_open");
 // var door_closed_img = document.getElementById("door_closed");
 var message_box = document.getElementById("message")
@@ -119,6 +124,7 @@ function createDownloadLink(blob) {
         success: function(res) {
 			// $('#message').text(res).show()
 			display_message(res) //send the response to the message element
+			update_figures()
 			// alert(res)
         },
     });
@@ -138,9 +144,15 @@ function createDownloadLink(blob) {
 // 	door_open_img.style.display = 'none'
 // }
 
-function display_message(txt) {
+//function that updates the message textbox
+const display_message = (txt) => {
 	//display message from request into the website
 	message_box.innerHTML=txt;
+}
 
 
+//function for updating the upper left figure and the middle figure 
+const update_figures = () => {
+	left_infographic.src = left_img_path
+	mid_infographic.src= mid_img_path
 }
