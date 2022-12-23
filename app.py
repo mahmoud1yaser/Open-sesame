@@ -17,7 +17,7 @@ from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score, roc
 from lazypredict.Supervised import LazyClassifier
 import speaker_model
 import text
-import visuals
+
 
 
 app = Flask(__name__)
@@ -32,7 +32,6 @@ def index():
         with open('audio.wav','wb') as audio:
             f.save(audio)
         print('file uploaded successfully')
-        visuals.visual('audio.wav')
 
         text_resl=text.text('audio.wav')
         speaker_resl=speaker_model.speaker('audio.wav')

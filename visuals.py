@@ -21,19 +21,18 @@ y4=df['mfcc2_mean'][733:790]
 x4=df['mfcc1_mean'][733:790]
 # x = df.loc[:, df.columns != 'result']
 
-def visual(audio):
-    y, s = librosa.load(audio)
-    audio, _ = librosa.effects.trim(y,top_db=30)
-
-    mfcc = librosa.feature.mfcc(y=audio, sr=s,n_fft=1024)
-    x=mfcc[0].mean()
-    y=mfcc[1].mean()
+def visual(x,y):
+    # plt.subplot(1, 1, 1)
+    # plt.title('Speaker')
     plt.scatter(x1,y1,label='Adham')
     plt.scatter(x2,y2,label='Ahmed')
     plt.scatter(x3,y3,label='Maha')
     plt.scatter(x4,y4,label='Mohmoud')
     plt.scatter(x,y,label='audio')
     plt.legend()
-    plt.savefig("static/assets/Feature_visuals.png")
+    imageName='static/assets/Feature_visuals.png'
+    plt.savefig(imageName)
+    plt.switch_backend('agg')
+
 
 
