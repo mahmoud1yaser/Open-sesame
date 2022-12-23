@@ -15,8 +15,6 @@ var audioContext //audio context to help us record
 var recordButton = document.getElementById("recordButton");
 var left_infographic = document.getElementById("left-figure")
 var mid_infographic = document.getElementById("mid-figure")
-// var door_open_img = document.getElementById("door_open");
-// var door_closed_img = document.getElementById("door_closed");
 var message_box = document.getElementById("message")
 //add events to those 2 buttons
 recordButton.addEventListener("click", startRecording);
@@ -110,9 +108,6 @@ function createDownloadLink(blob) {
 		}};
 	var fd=new FormData();
 	fd.append("audio_data",blob, filename);
-    xhr.open("POST","/",true); //Send post request to server, insert backend here
-	xhr.send(fd);
-	
 	$.ajax({
         type: 'POST',
         url: 'http://127.0.0.1:5000/',
@@ -124,7 +119,7 @@ function createDownloadLink(blob) {
         success: function(res) {
 			// $('#message').text(res).show()
 			display_message(res) //send the response to the message element
-			update_figures()
+			// update_figures()
 			// alert(res)
         },
     });
