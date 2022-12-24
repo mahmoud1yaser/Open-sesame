@@ -119,7 +119,7 @@ function createDownloadLink(blob) {
         success: function(res) {
 			// $('#message').text(res).show()
 			display_message(res) //send the response to the message element
-			// update_figures()
+			update_figures()
 			// alert(res)
         },
     });
