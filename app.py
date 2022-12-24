@@ -1,42 +1,49 @@
 from flask import Flask
 from flask import request
 from flask import render_template
-import os
-from scipy.io import wavfile
-import pandas as pd
-import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plt
-import sklearn
-from sklearn import preprocessing
-import librosa
-from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
-from sklearn.svm import SVC
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score, roc_curve
-from lazypredict.Supervised import LazyClassifier
-import speaker_model
-import text
-
+# import speaker_model
+# import text
+import fingerprint_model as fp
+import password_model as pm
 
 app = Flask(__name__)
+
 
 @app.route("/", methods=['POST', 'GET'])
 def index():
     if request.method == "POST":
         f = request.files['audio_data']
-        # if f:
-        #      f.save(os.path.join('static/assets/audio.wav'))
-        
-        with open('audio.wav','wb') as audio:
+
+        with open('input.wav', 'wb') as audio:
             f.save(audio)
         print('file uploaded successfully')
 
-        text_resl=text.text('audio.wav')
-        speaker_resl=speaker_model.speaker('audio.wav')
-        return(str(text_resl)+", "+str(speaker_resl))        
+        password = pm.predict_password('input.wav')
+        speaker = fp.predict_speaker('input.wav')
+        if speaker == 1:
+            user = 'Adham'
+        elif speaker == 2:
+            user = 'Mahmoud'
+        elif speaker == 3:
+            user = 'Ahmed'
+        elif speaker == 4:
+            user = 'Maha'
+        else:
+            user = 'User'
+
+        if speaker != 0 and password == 1:
+            access = 'Access Granted'
+        elif speaker != 0 and password == 0:
+            access = 'Invalid Password'
+        else:
+            access = 'Unauthorized Access'
+
+        # if speaker == 'Speaker is not recognized':
+        return (str(user) + ", "+str(access))
+        # return (str(password) + ", " + str(speaker))
     else:
         return render_template("index.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
