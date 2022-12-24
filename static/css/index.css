@@ -115,6 +115,7 @@ button:hover {
 }
 
 .left-figure {
+    max-width: 30vw;
     max-height:15vw;
 }
 /* message stuff */
