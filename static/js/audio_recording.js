@@ -1,21 +1,21 @@
 //webkitURL is deprecated but nevertheless
 URL = window.URL || window.webkitURL;
 
-var gumStream; 						//stream from getUserMedia()
-var rec; 							//Recorder.js object
-var input; 							//MediaStreamAudioSourceNode we'll be recording
+let gumStream; 						//stream from getUserMedia()
+let rec; 							//Recorder.js object
+let input; 							//MediaStreamAudioSourceNode we'll be recording
 //soft-coded stuff
 let recordLength_ms = 2000; //variable that controls the length of the recorded sample
 let left_figure_path = "../static/assets/Feature_visuals.png" //path for left img
 let mid_figure_path = "../static/assets/melspec.png" //path for mid img
 
 // shim for AudioContext when it's not avb.
-var AudioContext = window.AudioContext || window.webkitAudioContext;
-var audioContext //audio context to help us record
-var recordButton = document.getElementById("recordButton");
-var left_figure = document.getElementById("left-figure")
-var mid_figure = document.getElementById("mid-figure")
-var message_box = document.getElementById("message")
+let AudioContext = window.AudioContext || window.webkitAudioContext;
+let audioContext //audio context to help us record
+let recordButton = document.getElementById("recordButton");
+let left_figure = document.getElementById("left-figure")
+let mid_figure = document.getElementById("mid-figure")
+let message_box = document.getElementById("message")
 //add events to those 2 buttons
 recordButton.addEventListener("click", startRecording);
 
@@ -28,7 +28,7 @@ function startRecording() {
 		https://addpipe.com/blog/audio-constraints-getusermedia/
 	*/
 
-    var constraints = { audio: true, video:false }
+    let constraints = { audio: true, video:false }
  	/*
     	Disable the record button until we get a success or fail from getUserMedia()
 	*/
@@ -87,12 +87,12 @@ function stopRecording() {
 
 function createDownloadLink(blob) {
 
-	var url = URL.createObjectURL(blob);
-	var au = document.createElement('audio');
-	var li = document.createElement('div');
-	var link = document.createElement('a');
+	let url = URL.createObjectURL(blob);
+	let au = document.createElement('audio');
+	let li = document.createElement('div');
+	let link = document.createElement('a');
 
-	var filename = new Date().toISOString();
+	let filename = new Date().toISOString();
 
 
 	au.controls = true;
@@ -101,12 +101,12 @@ function createDownloadLink(blob) {
 	li.appendChild(au);
 
 
-	var xhr=new XMLHttpRequest();
+	let xhr=new XMLHttpRequest();
 	xhr.onload=function(e) {
 		if(this.readyState === 4) {
 			console.log("Server is on.")
 		}};
-	var fd=new FormData();
+	let fd=new FormData();
 	fd.append("audio_data",blob, filename);
 	$.ajax({
         type: 'POST',
@@ -137,7 +137,7 @@ const display_message = (txt) => {
 //function for updating the upper left figure and the middle figure 
 const update_figures = () => {
 	// // create a new timestamp     
-	// var timestamp = new Date().getTime(); 
+	// let timestamp = new Date().getTime(); 
 	// //update the left figure    	
 	// left_figure.src = "../static/assets/Feature_visuals.png?t=" + timestamp; 
 	update_element(left_figure,left_figure_path)
@@ -146,8 +146,8 @@ const update_figures = () => {
 
 const update_element = (imgElement, imgURL) => {
 	 // create a new timestamp 
-	 var timestamp = new Date().getTime();  
-	 var queryString = "?t=" + timestamp;    
+	 let timestamp = new Date().getTime();  
+	 let queryString = "?t=" + timestamp;    
 	 imgElement.src = imgURL + queryString;    
 }
 
@@ -157,14 +157,3 @@ const update_element = (imgElement, imgURL) => {
 // left_figure.src = left_figure_path
 // // $("#left-figure").prop("src", "Feature_visuals.png?" + new Date().valueOf());
 // mid_figure.src= mid_figure_path
-// function openDoor(){
-// 	console.log("opening the door")
-// 	door_closed_img.style.display = 'none'
-// 	door_open_img.style.display = 'block'
-// }
-
-// function closeDoor() {
-// 	console.log("closing the door")
-// 	door_closed_img.style.display = 'block'
-// 	door_open_img.style.display = 'none'
-// }
