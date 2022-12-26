@@ -1,16 +1,11 @@
 import pandas as pd
 import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plt
-import sklearn
 from sklearn import preprocessing
 import librosa
-import os
-from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score, roc_curve
-from lazypredict.Supervised import LazyClassifier
+# import visuals
 
 
 
@@ -50,7 +45,9 @@ def speaker(audio):
 
 
     for i in range(20):
-           data.append(mfcc[i].mean()) 
+        data.append(mfcc[i].mean())
+
+    # visuals.visual(mfcc[0].mean(), mfcc[1].mean())
     input_data_as_numpy_array  = np.asarray(data)
     input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
     std_data = scaler.transform(input_data_reshaped)
@@ -61,3 +58,7 @@ def speaker(audio):
         return ("Ahmed")
     elif speaker ==3:
         return ("Maha")
+    elif speaker ==4:
+        return("Mohmoud")
+    elif speaker ==5:
+        return("others")

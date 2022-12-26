@@ -1,20 +1,10 @@
-from flask import Flask
-from flask import request
-from flask import render_template
-import os
-from scipy.io import wavfile
 import pandas as pd
 import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plt
-import sklearn
 from sklearn import preprocessing
 import librosa
-from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score, roc_curve
-from lazypredict.Supervised import LazyClassifier
 
 
 df = pd.read_csv('data.csv')
@@ -73,4 +63,4 @@ def text(audio):
     if word ==0:
         return ("Wrong password!")
     elif word ==1:
-        return ("Welcome! ")
+        return ("Right password")

@@ -1,18 +1,26 @@
 //webkitURL is deprecated but nevertheless
 URL = window.URL || window.webkitURL;
 
-var gumStream; 						//stream from getUserMedia()
-var rec; 							//Recorder.js object
-var input; 							//MediaStreamAudioSourceNode we'll be recording
-let recordLength_ms = 2000;
+let gumStream; 						//stream from getUserMedia()
+let rec; 							//Recorder.js object
+let input; 							//MediaStreamAudioSourceNode we'll be recording
+//soft-coded stuff
+const recordLength_ms = 2000; //variable that controls the length of the recorded sample
+
+let left_figure_path = "../static/assets/Feature_visuals.png" //path for left img
+let mid_figure1_path = "../static/assets/fig_feat.png" //path for mid img
+let mid_figure2_path = "../static/assets/melspec.png" //path for mid img
+
+let left_figure = document.getElementById("left-figure")
+let mid_figure1 = document.getElementById("mid-figure1")
+let mid_figure2 = document.getElementById("mid-figure2")
+
 
 // shim for AudioContext when it's not avb.
-var AudioContext = window.AudioContext || window.webkitAudioContext;
-var audioContext //audio context to help us record
-var recordButton = document.getElementById("recordButton");
-// var door_open_img = document.getElementById("door_open");
-// var door_closed_img = document.getElementById("door_closed");
-var message_box = document.getElementById("message")
+let AudioContext = window.AudioContext || window.webkitAudioContext;
+let audioContext //audio context to help us record
+let recordButton = document.getElementById("recordButton");
+let message_box = document.getElementById("message")
 //add events to those 2 buttons
 recordButton.addEventListener("click", startRecording);
 
@@ -25,7 +33,7 @@ function startRecording() {
 		https://addpipe.com/blog/audio-constraints-getusermedia/
 	*/
 
-    var constraints = { audio: true, video:false }
+    let constraints = { audio: true, video:false }
  	/*
     	Disable the record button until we get a success or fail from getUserMedia()
 	*/
@@ -70,7 +78,7 @@ function startRecording() {
 
 
 function stopRecording() {
-	// console.log("stopButton clicked");
+	console.log("Recording stopped");
 	//tell the recorder to stop the recording
 	rec.stop();
 	recordButton.disabled = false;
@@ -84,12 +92,12 @@ function stopRecording() {
 
 function createDownloadLink(blob) {
 
-	var url = URL.createObjectURL(blob);
-	var au = document.createElement('audio');
-	var li = document.createElement('div');
-	var link = document.createElement('a');
+	let url = URL.createObjectURL(blob);
+	let au = document.createElement('audio');
+	let li = document.createElement('div');
+	let link = document.createElement('a');
 
-	var filename = new Date().toISOString();
+	let filename = new Date().toISOString();
 
 
 	au.controls = true;
@@ -98,16 +106,13 @@ function createDownloadLink(blob) {
 	li.appendChild(au);
 
 
-	var xhr=new XMLHttpRequest();
+	let xhr=new XMLHttpRequest();
 	xhr.onload=function(e) {
 		if(this.readyState === 4) {
 			console.log("Server is on.")
 		}};
-	var fd=new FormData();
+	let fd=new FormData();
 	fd.append("audio_data",blob, filename);
-    xhr.open("POST","/",true); //Send post request to server, insert backend here
-	xhr.send(fd);
-	
 	$.ajax({
         type: 'POST',
         url: 'http://127.0.0.1:5000/',
@@ -119,6 +124,7 @@ function createDownloadLink(blob) {
         success: function(res) {
 			// $('#message').text(res).show()
 			display_message(res) //send the response to the message element
+			update_figures()
 			// alert(res)
 			let image = document.getElementById("image");
  
@@ -129,21 +135,36 @@ function createDownloadLink(blob) {
 	// recordingsList.appendChild(li); //commented, used for testing
 }
 
-// function openDoor(){
-// 	console.log("opening the door")
-// 	door_closed_img.style.display = 'none'
-// 	door_open_img.style.display = 'block'
-// }
-
-// function closeDoor() {
-// 	console.log("closing the door")
-// 	door_closed_img.style.display = 'block'
-// 	door_open_img.style.display = 'none'
-// }
-
-function display_message(txt) {
+//function that updates the message textbox
+const display_message = (txt) => {
 	//display message from request into the website
 	message_box.innerHTML=txt;
+}
 
+
+//function for updating the upper left figure and the middle figure 
+const update_figures = () => {
+	// // create a new timestamp     
+	// let timestamp = new Date().getTime(); 
+	// //update the left figure    	
+	// left_figure.src = "../static/assets/Feature_visuals.png?t=" + timestamp; 
+	update_element(left_figure,left_figure_path)
+	update_element(mid_figure1, mid_figure1_path)
+	update_element(mid_figure2, mid_figure2_path)
 
 }
+
+//function that takes the element and a url, and updates it 
+const update_element = (imgElement, imgURL) => {
+	 // create a new timestamp 
+	 let timestamp = new Date().getTime();  
+	 let queryString = "?t=" + timestamp;    
+	 imgElement.src = imgURL + queryString;    
+}
+
+
+
+// left_figure.src = "../static/assets/sound_waveform.png"
+// left_figure.src = left_figure_path
+// // $("#left-figure").prop("src", "Feature_visuals.png?" + new Date().valueOf());
+// mid_figure.src= mid_figure_path
