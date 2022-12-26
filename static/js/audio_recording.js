@@ -5,16 +5,21 @@ let gumStream; 						//stream from getUserMedia()
 let rec; 							//Recorder.js object
 let input; 							//MediaStreamAudioSourceNode we'll be recording
 //soft-coded stuff
-let recordLength_ms = 2000; //variable that controls the length of the recorded sample
+const recordLength_ms = 2000; //variable that controls the length of the recorded sample
+
 let left_figure_path = "../static/assets/Feature_visuals.png" //path for left img
-let mid_figure_path = "../static/assets/melspec.png" //path for mid img
+let mid_figure1_path = "../static/assets/fig_feat.png" //path for mid img
+let mid_figure2_path = "../static/assets/melspec.png" //path for mid img
+
+let left_figure = document.getElementById("left-figure")
+let mid_figure1 = document.getElementById("mid-figure1")
+let mid_figure2 = document.getElementById("mid-figure2")
+
 
 // shim for AudioContext when it's not avb.
 let AudioContext = window.AudioContext || window.webkitAudioContext;
 let audioContext //audio context to help us record
 let recordButton = document.getElementById("recordButton");
-let left_figure = document.getElementById("left-figure")
-let mid_figure = document.getElementById("mid-figure")
 let message_box = document.getElementById("message")
 //add events to those 2 buttons
 recordButton.addEventListener("click", startRecording);
@@ -141,7 +146,9 @@ const update_figures = () => {
 	// //update the left figure    	
 	// left_figure.src = "../static/assets/Feature_visuals.png?t=" + timestamp; 
 	update_element(left_figure,left_figure_path)
-	update_element(mid_figure, mid_figure_path)
+	update_element(mid_figure1, mid_figure1_path)
+	update_element(mid_figure2, mid_figure2_path)
+
 }
 
 const update_element = (imgElement, imgURL) => {

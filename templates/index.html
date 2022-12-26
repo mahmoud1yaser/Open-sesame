@@ -13,34 +13,37 @@
 
     <div class="page-container">
       <!-- Title for page -->
-      <h1 class="title">Open Sesame: A voice and speaker recognition system using machine learning</h1>
+      <h2 class="title">Open Sesame: A voice and speaker recognition system using machine learning</h2>
       <!-- Rest of the page -->
       <div class="mid-section">
         <!-- Left section -->
         <div id="left-section" class="left-section">
          <div class="section-container">
-          <h1>Feature engineering</h1>
+          <p class="title">Feature engineering</p>
             <img src="../static/assets/default_feature.png" alt="img" class="left-figure" id="left-figure">
             <h2 class="title">Mel Frequency Cepstral Co-efficients</h2>
-            <h2 class="title">Melspectrogram/ Band energy ratio</h2>
-            <h2 class="title">Spectral centroid / Root mean square</h2>
-            <h2 class="title"></h2>
-         </div> 
+            <h2 class="title">Melspectrogram/ Spectral centroid</h2>
+         </div>
+          <div class="section-container">
+            <h2 class="title">Machine learning model</h2>
+            <p>using a random forest framework to assess the features, <br>
+              we acheieved an accuracy of 96%
+              with a cross validation score of 92%.<br>
+              After testing a vareity of models such as: SVC, Linear regression, <br>
+              decision tree, we found that the forest had the highest accruacy during testing. <br>
+            </p>
+         </div>
         </div>
 
         <!-- Middle section -->
         <div class="middle-section">
           <div class="section-container">
-            <h2 class="title">Machine learning model</h2>
-            <p>using a random forest framework to assess the features, <br>
-              we acheieved an accuracy of 96%
-              with a cross validation score of 92%.<br> 
-              After testing a vareity of models such as: SVC, Linear regression, <br>
-              decision tree, we found that the forest had the highest accruacy during testing. <br>
-            </p>
+            <p class ="title">Password Model</p>
+           <img src="../static/assets/fig_feat.png" class="infographic" id="mid-figure1" alt="">
          </div>
           <div class="section-container">
-           <img src="../static/assets/trial4.gif" class="infographic" id="mid-figure" alt="">
+            <p class ="title">Speaker Model</p>
+           <img src="../static/assets/fig_feat.png" class="infographic" id="mid-figure2" alt="">
          </div>
         </div>
 
@@ -57,13 +60,27 @@
                 <div id="recordingsList"></div>
                 <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
               </div>
-              <p id="message"></p>
+              <p id="message">Hint: password is <br>
+                "open the door"</p>
             </div>
-            <h2 class="title">Note</h2>
+            <p class="title">Note</p>
             <p>Start talking as soon as <br>
               you see "Recording has started..." message
             </p>
          </div>
+            <div class="section-container">
+              <p class="title">
+                              Made by SBME 2024 team 9
+
+              </p>
+              <p class="title" style="text-align: left;">
+                 <br>
+                - Ahmed Mohamed Elsarta <br>
+                - Mahmod Yaser Mahmod <br>
+                - Maha Medhat<br>
+                - Adham Mohamed<br>
+              </p>
+            </div>
         </div>
         
         
