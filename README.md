@@ -17,8 +17,8 @@
   | Names               | Section | Bench Number |
   | ------------------- | ------- | ------------ |
   | Mahmoud Yaser       |    2    |              |
-  | Ahmed El Sarta      |    1    |              |
-  | Adham Mohamed       |    1    |     8        |
+  | Ahmed El Sarta      |    1    |     8        |
+  | Adham Mohamed       |    1    |     9        |
   | Maha Medhat         |    2    |     38       |
 - Submitted to: Dr. Tamer Basha & Eng. Abdallah
 ## Preview
