@@ -120,6 +120,9 @@ function createDownloadLink(blob) {
 			// $('#message').text(res).show()
 			display_message(res) //send the response to the message element
 			// alert(res)
+			let image = document.getElementById("image");
+ 
+            image.src ="https://media.geeksforgeeks.org/wp-content/uploads/20210915115837/gfg3.png"
         },
     });
 
