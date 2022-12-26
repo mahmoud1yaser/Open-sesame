@@ -78,7 +78,7 @@ function startRecording() {
 
 
 function stopRecording() {
-	// console.log("stopButton clicked");
+	console.log("Recording stopped");
 	//tell the recorder to stop the recording
 	rec.stop();
 	recordButton.disabled = false;
@@ -151,6 +151,7 @@ const update_figures = () => {
 
 }
 
+//function that takes the element and a url, and updates it 
 const update_element = (imgElement, imgURL) => {
 	 // create a new timestamp 
 	 let timestamp = new Date().getTime();  
