@@ -1,64 +1,105 @@
+import audio_features as feat
+# Data cleaning
 import pandas as pd
 import numpy as np
-from sklearn import preprocessing
-import librosa
-from sklearn.svm import SVC
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score, roc_curve
-# import visuals
+from xgboost import XGBClassifier
+import librosa.display as ld
+import matplotlib.pyplot as plt
+from matplotlib.colors import ListedColormap
+
+# Advanced options
+import warnings
+plt.style.use('ggplot')
+warnings.filterwarnings("ignore")
+
+classifier_path = 'models\\speaker\\xgb_speaker.json'
+classifier_pca_path = 'models\\speaker\\xgb_pca_speaker.json'
+
+
+classifier = XGBClassifier()
+classifier.load_model(classifier_path)
+
+classifier_pca = XGBClassifier()
+classifier_pca.load_model(classifier_pca_path)
+
+
+def predict_speaker():
+    x_ver = feat.get_audio_features()
+    print(x_ver)
+    # x_ver = np.array(x_ver)
+    speaker_id = classifier.predict(x_ver)
+
+    fig_speaker = plt.figure()
+    plt.scatter(x_ver[:, 0]-4, x_ver[:, 1] - 2, label='input', c='black', marker='*', s=100)
+    print(x_ver[:, 0])
+
+    xb_train, y_train, _, _ = feat.get_plot_data()
+    X_set, y_set = xb_train[:, :2], y_train[:, 0]
+    X1, X2 = np.meshgrid(np.arange(start=X_set[:, 0].min() - 1,
+                                   stop=X_set[:, 0].max() + 1, step=0.01),
+                         np.arange(start=X_set[:, 1].min() - 1,
+                                   stop=X_set[:, 1].max() + 1, step=0.01))
+
+    plt.contourf(X1, X2, classifier_pca.predict(np.array([X1.ravel(),
+                                                          X2.ravel()]).T).reshape(X1.shape), alpha=0.4,
+                 cmap=ListedColormap(('#b35c52', '#6a9681', '#6b7ca8', '#9483a0', '#adaa7b')))
+
+    for i, j in enumerate(np.unique(y_set)):
+        plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
+                    color=ListedColormap(('#9b2012', '#0f633b', '#234499', '#602d90', '#88842a'))(i), label=j)
+
+    plt.title('Model (Speaker)')
+    plt.xlabel('PC1')  # for Xlabel
+    plt.ylabel('PC2')  # for Ylabel
+    plt.legend()  # to show legend
+    fig_speaker.savefig("static\\assets\\speaker_feat.png")
+
+    # fig_spect = plt.figure()
+    # ld.specshow(x_spect,
+    #             x_axis="time",
+    #             y_axis="mfccs",
+    #             sr=sr)
+    # plt.colorbar(format="%+2.f")
+    # fig_spect.savefig("static\\assets\\Feature_visuals.png")
+
+    if speaker_id == 4:
+        return 'Maha'
+    elif speaker_id == 1:
+        return 'Adham'
+    elif speaker_id == 2:
+        return 'Mahmoud'
+    elif speaker_id == 3:
+        return 'Ahmed'
+    else:
+        return 'User'
 
 
 
-df = pd.read_csv('data2.csv')
-df.drop(df.columns[0], inplace=True, axis=1)
-y = df['result']
-X = df.loc[:, df.columns != 'result']
 
-cols = X.columns
-scaler = preprocessing.MinMaxScaler()
-np_scaled = scaler.fit_transform(X)
+# def plot_speaker():
+#     fig = plt.figure()
+#     x_ver = feat.get_audio_features()
+#     plt.scatter(x_ver[:, 0], x_ver[:, 1]-5, label='input', c='black', marker='*', s=100)
+#     print(x_ver[:, 0])
+#     X_set, y_set = xb_train[:, :2], y_train[:, 0]
+#     X1, X2 = np.meshgrid(np.arange(start=X_set[:, 0].min() - 1,
+#                                    stop=X_set[:, 0].max() + 1, step=0.01),
+#                          np.arange(start=X_set[:, 1].min() - 1,
+#                                    stop=X_set[:, 1].max() + 1, step=0.01))
+#
+#     plt.contourf(X1, X2, classifier_pca.predict(np.array([X1.ravel(),
+#                                                           X2.ravel()]).T).reshape(X1.shape), alpha=0.4,
+#                  cmap=ListedColormap(('#b35c52', '#6a9681', '#6b7ca8', '#9483a0', '#adaa7b')))
+#
+#     for i, j in enumerate(np.unique(y_set)):
+#         plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
+#                     color=ListedColormap(('#9b2012', '#0f633b', '#234499', '#602d90', '#88842a'))(i), label=j)
+#
+#     plt.title('Model (Speaker)')
+#     plt.xlabel('PC1')  # for Xlabel
+#     plt.ylabel('PC2')  # for Ylabel
+#     plt.legend()  # to show legend
+#     imageName = "static\\assets\\speaker_feat.png"
+#     # plt.show()
+#     fig.savefig(imageName)
 
-X = pd.DataFrame(np_scaled, columns = cols)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
-
-model=SVC()
-model.fit(X_train, y_train)
-preds = model.predict(X_test)
-print('Accuracy',':', round(accuracy_score(y_test, preds), 5), '\n')
-
-#test
-def speaker(audio):
-    y, s = librosa.load(audio)
-    audio, _ = librosa.effects.trim(y,top_db=30)
-    
-
-    mfcc = librosa.feature.mfcc(y=audio, sr=s,n_fft=1024)
-    data=[]
-    #features
-    chromagram = librosa.feature.chroma_stft(audio, sr=s,n_fft=1024)
-    data.append(chromagram.mean())
-    mel = librosa.feature.melspectrogram(y=audio, sr=s,n_fft=1024)
-    data.append(mel.mean())
-    tone =librosa.feature.tonnetz (y=audio, sr=s)
-    data.append(tone.mean())
-
-
-
-    for i in range(20):
-        data.append(mfcc[i].mean())
-
-    # visuals.visual(mfcc[0].mean(), mfcc[1].mean())
-    input_data_as_numpy_array  = np.asarray(data)
-    input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
-    std_data = scaler.transform(input_data_reshaped)
-    speaker=model.predict(std_data)
-    if speaker ==1:
-        return ("Adham")
-    elif speaker ==2:
-        return ("Ahmed")
-    elif speaker ==3:
-        return ("Maha")
-    elif speaker ==4:
-        return("Mohmoud")
-    elif speaker ==5:
-        return("others")

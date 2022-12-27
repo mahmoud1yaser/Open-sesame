@@ -2,7 +2,7 @@ from flask import Flask
 from flask import request
 from flask import render_template
 import password_model as pm
-import speaker_model
+import speaker_model as sm
 import text
 
 
@@ -21,9 +21,12 @@ def index():
         print('file uploaded successfully')
 
         # text_resl=text.text('audio.wav')
-        text_resl = pm.predict_password('audio.wav')
-        speaker_resl=speaker_model.speaker('audio.wav')
-        return(str(text_resl)+", "+str(speaker_resl))        
+        # text_resl = pm.predict_password('audio.wav')
+        # speaker_resl = speaker_model.speaker('audio.wav')
+        speaker_resl = sm.predict_speaker()
+        text = pm.predict_password()
+        print('finished')
+        return(str(text)+", "+str(speaker_resl))
     else:
         return render_template("index.html")
 

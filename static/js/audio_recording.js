@@ -7,16 +7,16 @@ let input; 							//MediaStreamAudioSourceNode we'll be recording
 //soft-coded stuff
 const recordLength_ms = 2000; //variable that controls the length of the recorded sample
 
-let left_figure_path = "../static/assets/Feature_visuals.png" //path for left img
-let mid_figure1_path = "../static/assets/fig_feat.png" //path for mid img
-let mid_figure2_path = "../static/assets/melspec.png" //path for mid img
+let left_figure_path = "../static/assets/fig_feat.png" //path for left img
+let mid_figure1_path = "../static/assets/password_feat.png" //path for mid img
+let mid_figure2_path = "../static/assets/speaker_feat.png" //path for mid img
 
 let left_figure = document.getElementById("left-figure")
 let mid_figure1 = document.getElementById("mid-figure1")
 let mid_figure2 = document.getElementById("mid-figure2")
 
 
-// shim for AudioContext when it's not avb.
+// Fshim for AudioContext when it's not avb.
 let AudioContext = window.AudioContext || window.webkitAudioContext;
 let audioContext //audio context to help us record
 let recordButton = document.getElementById("recordButton");
