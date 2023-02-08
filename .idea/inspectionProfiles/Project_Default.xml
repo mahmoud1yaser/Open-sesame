@@ -25,6 +25,7 @@
       <option name="ignoredIdentifiers">
         <list>
           <option value="app.NULL" />
+          <option value="phasemixer.templates.image.img_url" />
         </list>
       </option>
     </inspection_tool>
