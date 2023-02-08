@@ -27,3 +27,5 @@ def predict_password():
     x_ver = sc.transform(x_ver.reshape(1, -1))
     password_id = classifier.predict(x_ver)
     return password_id
+
+

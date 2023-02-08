@@ -3,6 +3,7 @@ from flask import request
 from flask import render_template
 import password_model
 import speaker_model
+import utils
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -19,7 +20,8 @@ def index():
         print('file uploaded successfully')
 
         speaker = speaker_model.predict_speaker()
-        password = password_model.predict_password()
+        # password = password_model.predict_password()
+        password = utils.check_word('audio.wav')
         if speaker == "User":
             return "You are not" + ", " + "Registered"
         if password == 0:

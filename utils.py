@@ -4,6 +4,7 @@ import noisereduce
 # Data cleaning
 import numpy as np
 from numpy import mean, var
+import speech_recognition as sr
 
 
 # Functions we will use
@@ -69,3 +70,24 @@ def fancy_amplitude_envelope(signal, framesize, hoplength):
 def get_audio_features():
     x_ver = transform_audio('audio.wav', 1024, 512, 13)
     return x_ver
+
+
+def check_word(wav):
+    # initialize recognizer class (for recognizing the speech)
+    r = sr.Recognizer()
+
+    # Reading Microphone as source
+    # listening the speech and store in audio_text variable
+    with sr.AudioFile(wav) as source:
+        audio_text = r.record(source)
+
+    # recoginize_() method will throw a request error if the API is unreachable, hence using exception handling
+    try:
+        # using google speech recognition
+        transcribed_text = r.recognize_google(audio_text)
+        if "open" in transcribed_text:
+            return 1
+        else:
+            return 0
+    except:
+        return 0
