@@ -13,35 +13,30 @@
 
     <div class="page-container">
       <!-- Title for page -->
-      <h1 class="title">Open Sesame: A voice and speaker recognition system using machine learning</h1>
+      <h2 class="title">Open Sesame: A voice and speaker recognition system using machine learning</h2>
       <!-- Rest of the page -->
       <div class="mid-section">
         <!-- Left section -->
         <div id="left-section" class="left-section">
          <div class="section-container">
-          <h1>Feature engineering</h1>
-            <img src="../static/assets/trial3.gif" alt="img" class="left-infographic">
-            <h2 class="title">Mel Frequency Cepstral Co-efficients</h2>
-            <h2 class="title">Melspectrogram/ Band energy ratio</h2>
-            <h2 class="title">Spectral centroid / Root mean square</h2>
-            <h2 class="title"></h2>
-            <!-- <img src="../static/assets/melspec.png" alt="img" class="left-infographic"> -->
+          <h3 class="title">Project Development</h3>
+            <img src="../static/assets/project_dev.png" alt="img" class="left-figure" id="left-figure">
+         </div>
+          <div class="section-container">
+            <p class="title">Audio Feature Extraction</p>
+            <img src="../static/assets/features.png" alt="machine learning diagram" class="left-figure">
          </div>
         </div>
 
         <!-- Middle section -->
         <div class="middle-section">
           <div class="section-container">
-            <h2 class="title">Machine learning model</h2>
-            <p>using a random forest framework to assess the features, <br>
-              we acheieved an accuracy of 96%
-              with a cross validation score of 92%.<br> 
-              After testing a vareity of models such as: SVC, Linear regression, <br>
-              decision tree, we found that the forest had the highest accruacy during testing. <br>
-            </p>
+            <p class ="title"> Top Model 10 Features </p>
+           <img src="../static/assets/dynamic_plot.png" class="infographic" id="mid-figure1" alt="">
          </div>
           <div class="section-container">
-           <img src="../static/assets/trial4.gif" class="infographic" alt="">
+            <p class ="title">Decision Tree-based Model</p>
+           <img src="../static/assets/tree_plot.png" class="infographic" id="mid-figure2" alt="">
          </div>
         </div>
 
@@ -50,8 +45,6 @@
           <div id="mic-section" class="section-container">
             <div id="model-section">
               <div class="section-container">
-                <!-- <img src="../static/assets/door_closed.jpg" alt="door_closed" class="door" id="door_closed">
-                <img src="../static/assets/door_open.jpg" alt="door_open" class="door" id="door_open"> -->
                 <p class="title"> Click to enter your password</p>
                 <!-- <button id="recordButton" class="bi bi-mic" style="font-size:6rem"></button>  -->
                 <div id="recordButton">
@@ -60,13 +53,21 @@
                 <div id="recordingsList"></div>
                 <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
               </div>
-              <p id="message"></p>
+              <p id="message">Hint: password is <br>
+                "open the door"</p>
             </div>
-            <h2 class="title">Note</h2>
-            <p>Start talking as soon as <br>
+            <p>Note: Start talking as soon as <br>
               you see "Recording has started..." message
             </p>
          </div>
+            <div class="section-container"  style="height: 10.5rem">
+              <p class="title">
+                  Submitted to:
+              </p>
+              <p  style="text-align: center;">
+                Dr. Tamer Basha & Eng. Abdallah Darwish All rights reserved © 2022 to Team 09 - Systems & Biomedical Engineering, Cairo University (Class 2024)
+              </p>
+            </div>
         </div>
         
         

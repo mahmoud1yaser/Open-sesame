@@ -4,8 +4,10 @@
     text-align: center;
   }
   
-p {
+p, h2, h3 {
     max-width: 100%;
+    padding:0;
+    margin:0.3rem;
 }
 
 button {
@@ -48,7 +50,7 @@ button:hover {
 
 .title {
     min-width: 20%;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: bold;
     display: block;
     text-align: center;
@@ -59,6 +61,7 @@ button:hover {
 }
 #recordButton{
     cursor: pointer;
+    margin-top: 1.5rem;
 }
 
 #recordButton:active{
@@ -69,13 +72,14 @@ button:hover {
 
 
 .mid-section {
-    height: 80vh;
+    height: 95vh;
 }
 .mid-section > div {
     display: table-cell;
     vertical-align: top;
 }
 .section-container {
+    height: 19rem;
   width: 90%;
   display: block;
   margin-left: auto;
@@ -91,14 +95,13 @@ button:hover {
     border-radius: 2rem;
     text-align: center;
     min-width: 33vw;
-    height: 79vh;
+    /*height: 95vh;*/
 }
 
 .middle-section {
     /* padding: 0.5rem; */
     border-radius: 2rem;
     min-width: 33vw;
-    height: 80vh;
     display: flex;
     justify-content: center;
 }
@@ -107,19 +110,20 @@ button:hover {
     border-radius: 2rem;
     text-align: center;
     min-width: 33vw;
-    height: 79vh;
 }
 
 .infographic {
-    max-width: 30vw;
+    width: 26rem;
+    height:17rem;
 }
 
-.left-infographic {
-    max-height:15vw;
+.left-figure {
+    max-width: 30vw;
+    max-height:17vw;
 }
 /* message stuff */
 #message {
-    font-size: 2rem;
+    font-size: 1.4rem;
 }
 
 /* door stuff */
