@@ -109,7 +109,7 @@ def plot_feature_importance_bar(X, user_input, classifier, features_number=10):
 
     # Plot the feature importances of the top 10 features based on the confidence score
     fig, ax = plt.subplots(figsize=(7, 5))
-    ax.barh(range(features_number), importances[indices], align='center', color='blue')
+    ax.barh(range(features_number), importances[indices], align='center', color='gray')
     ax.set_yticks(range(features_number))
     ax.set_yticklabels(X.columns[indices])
     ax.set_xlabel('Feature Importance')
