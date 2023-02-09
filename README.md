@@ -1,10 +1,22 @@
 
 # A voice and speaker recognition system using machine learning
 
-
+  - [Data](#data)
   - [Description](#description)
   - [Task-Info](#task-info)
   - [Preview](#Preview)
+
+## Data
+- Every member of the team recorded equal number of voice records with equal number of categories. 
+- Hierarchy:
+  - DSP_Data_New
+    - blank (blank audios)
+    - close the door
+    - open the door
+    - unlock the door
+  - DSP_Data_Verification
+    - open the door (password)
+    - others
 
 ## Description
    This is a web app that can recognize speech and verify voices.
