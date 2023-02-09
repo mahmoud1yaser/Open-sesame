@@ -7,9 +7,9 @@ let input; 							//MediaStreamAudioSourceNode we'll be recording
 //soft-coded stuff
 const recordLength_ms = 2000; //variable that controls the length of the recorded sample
 
-let left_figure_path = "../static/assets/fig_feat.png" //path for left img
-let mid_figure1_path = "../static/assets/password_feat.png" //path for mid img
-let mid_figure2_path = "../static/assets/speaker_feat.png" //path for mid img
+let left_figure_path = "../static/assets/project_dev.png" //path for left img
+let mid_figure1_path = "../static/assets/dynamic_plot.png" //path for mid img
+let mid_figure2_path = "../static/assets/tree_plot.png" //path for mid img
 
 let left_figure = document.getElementById("left-figure")
 let mid_figure1 = document.getElementById("mid-figure1")
@@ -132,7 +132,6 @@ function createDownloadLink(blob) {
         },
     });
 
-	// recordingsList.appendChild(li); //commented, used for testing
 }
 
 //function that updates the message textbox
@@ -163,8 +162,3 @@ const update_element = (imgElement, imgURL) => {
 }
 
 
-
-// left_figure.src = "../static/assets/sound_waveform.png"
-// left_figure.src = left_figure_path
-// // $("#left-figure").prop("src", "Feature_visuals.png?" + new Date().valueOf());
-// mid_figure.src= mid_figure_path

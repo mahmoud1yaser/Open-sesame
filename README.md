@@ -15,11 +15,11 @@
 - Digital Signal Processing (SBE3110) class task 4 created by Team 9:
 
   | Names               | Section | Bench Number |
-  | ------------------- | ------- | ------------ |
-  | Mahmoud Yaser       |    2    |              |
-  | Ahmed El Sarta      |    1    |     8        |
-  | Adham Mohamed       |    1    |     9        |
-  | Maha Medhat         |    2    |     38       |
+  | ------------------- |--------------| ------------ |
+  | Mahmoud Yaser       |    2    | 30           |
+  | Ahmed El Sarta      |    1    | 8            |
+  | Adham Mohamed       |    1    | 9            |
+  | Maha Medhat         |    2    | 38           |
 - Submitted to: Dr. Tamer Basha & Eng. Abdallah
 ## Preview
 

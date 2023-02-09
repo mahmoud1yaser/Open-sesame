@@ -79,6 +79,7 @@ button:hover {
     vertical-align: top;
 }
 .section-container {
+    height: 19rem;
   width: 90%;
   display: block;
   margin-left: auto;
@@ -112,13 +113,13 @@ button:hover {
 }
 
 .infographic {
-    width: 24rem;
-    height:14rem;
+    width: 26rem;
+    height:17rem;
 }
 
 .left-figure {
     max-width: 30vw;
-    max-height:15vw;
+    max-height:17vw;
 }
 /* message stuff */
 #message {

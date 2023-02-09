@@ -25,6 +25,7 @@ x_test = sc.transform(x_test)
 def predict_speaker():
     x_ver = utils.get_audio_features()
     x_ver = sc.transform(x_ver.reshape(1, -1))
+    utils.plot_feature_importance_bar(pd.DataFrame(x_features), x_ver, classifier)
     speaker_id = classifier.predict(x_ver)
 
     if speaker_id == 1:

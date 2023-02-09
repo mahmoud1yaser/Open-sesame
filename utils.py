@@ -5,13 +5,14 @@ import noisereduce
 import numpy as np
 from numpy import mean, var
 import speech_recognition as sr
+import matplotlib.pyplot as plt
 
 
 # Functions we will use
 def transform_audio(audio, FRAMESIZE, HOPLENGTH, MELS):
-    audio_noised, sr = librosa.load(audio, duration=2)
-    audio_array = noisereduce.reduce_noise(y=audio_noised, sr=sr)
-    # audio_array, sr = librosa.load(audio, duration=2)
+    # audio_noised, sr = librosa.load(audio, duration=2)
+    # audio_array = noisereduce.reduce_noise(y=audio_noised, sr=sr)
+    audio_array, sr = librosa.load(audio, duration=2)
 
     log_mel_audio_list_mean = []
     log_mel_audio_list_var = []
@@ -91,3 +92,49 @@ def check_word(wav):
             return 0
     except:
         return 0
+
+
+def plot_feature_importance_bar(X, user_input, classifier, features_number=10):
+    # Make a prediction on the user's input data
+    user_prediction = classifier.predict(user_input)
+
+    # Get the confidence score of the prediction
+    confidence_score = classifier.predict_proba(user_input)[0][user_prediction[0]]
+
+    # Get the feature importances from the classifier
+    importances = classifier.feature_importances_
+
+    # Get the indices of the top 10 most important features
+    indices = np.argsort(importances)[::-1][:features_number]
+
+    # Plot the feature importances of the top 10 features based on the confidence score
+    fig, ax = plt.subplots(figsize=(7, 5))
+    ax.barh(range(features_number), importances[indices], align='center', color='blue')
+    ax.set_yticks(range(features_number))
+    ax.set_yticklabels(X.columns[indices])
+    ax.set_xlabel('Feature Importance')
+    ax.set_title('Feature Importance Plot Based on Confidence Score')
+    ax.text(0.95, 0.97, 'Input Confidence Score: {:.2f}'.format(confidence_score), ha='right', va='bottom',
+            transform=ax.transAxes, fontsize=12)
+    plt.tight_layout()
+    fig.savefig('static\\assets\\dynamic_plot.png')
+
+
+def plot_feature_importance_scatter(X, user_input, classifier, features_number=10):
+    user_prediction = classifier.predict(user_input)
+    confidence_score = classifier.predict_proba(user_input)[0][user_prediction[0]]
+
+    importances = classifier.feature_importances_
+    indices = np.argsort(importances)[::-1][:features_number]
+
+    fig, ax = plt.subplots(figsize=(7, 5))
+    c = ax.scatter(importances[indices], range(features_number), c=[confidence_score] * features_number, cmap='Blues')
+    ax.set_yticks(range(features_number))
+    ax.set_yticklabels(X.columns[indices])
+    ax.set_xlabel('Feature Importance')
+    ax.set_title('Feature Importance Plot Based on Confidence Score')
+    ax.text(0.95, 0.95, 'Input Confidence Score: {:.2f}'.format(confidence_score), ha='right', va='bottom',
+            transform=ax.transAxes, fontsize=12)
+    plt.colorbar(c, ax=ax).set_label('Confidence Score')
+    plt.tight_layout()
+    fig.savefig('static\\assets\\dynamic_plot.png')
