@@ -21,7 +21,7 @@ def index():
 
         speaker = speaker_model.predict_speaker()
         # password = password_model.predict_password()
-        password = utils.check_word('audio.wav')
+        password = utils.check_password('audio.wav')
         if speaker == "User":
             return "You are not" + ", " + "Registered"
         if password == 0:

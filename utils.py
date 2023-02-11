@@ -73,7 +73,7 @@ def get_audio_features():
     return x_ver
 
 
-def check_word(wav):
+def check_password(wav):
     # initialize recognizer class (for recognizing the speech)
     r = speech_recognition.Recognizer()
 
