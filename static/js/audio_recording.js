@@ -127,8 +127,7 @@ function createDownloadLink(blob) {
 			update_figures()
 			// alert(res)
 			let image = document.getElementById("image");
- 
-            image.src ="https://media.geeksforgeeks.org/wp-content/uploads/20210915115837/gfg3.png"
+            // image.src ="https://media.geeksforgeeks.org/wp-content/uploads/20210915115837/gfg3.png"
         },
     });
 
