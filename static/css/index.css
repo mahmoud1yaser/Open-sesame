@@ -61,7 +61,6 @@ button:hover {
 }
 #recordButton{
     cursor: pointer;
-    margin-top: 1.5rem;
 }
 
 #recordButton:active{
@@ -79,7 +78,7 @@ button:hover {
     vertical-align: top;
 }
 .section-container {
-    height: 19rem;
+    height: 44vh;
   width: 90%;
   display: block;
   margin-left: auto;
@@ -97,7 +96,9 @@ button:hover {
     min-width: 33vw;
     /*height: 95vh;*/
 }
-
+#mic-section {
+    height:44vh;
+}
 .middle-section {
     /* padding: 0.5rem; */
     border-radius: 2rem;
@@ -114,7 +115,7 @@ button:hover {
 
 .infographic {
     width: 26rem;
-    height:17rem;
+    height:16rem;
 }
 
 .left-figure {

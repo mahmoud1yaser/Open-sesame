@@ -8,13 +8,13 @@ let input; 							//MediaStreamAudioSourceNode we'll be recording
 const recordLength_ms = 2000; //variable that controls the length of the recorded sample
 
 let left_figure_path = "../static/assets/project_dev.png" //path for left img
-let mid_figure1_path = "../static/assets/dynamic_plot.png" //path for mid img
+let mid_figure1_path = "../static/assets/top_10_features.png" //path for mid img
 let mid_figure2_path = "../static/assets/tree_plot.png" //path for mid img
-
+let right_figure_path = "../static/assets/dynamic_pie_chart.png" // path for left img
 let left_figure = document.getElementById("left-figure")
 let mid_figure1 = document.getElementById("mid-figure1")
 let mid_figure2 = document.getElementById("mid-figure2")
-
+let right_figure = document.getElementById("right-figure1")
 
 // Fshim for AudioContext when it's not avb.
 let AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -149,6 +149,7 @@ const update_figures = () => {
 	update_element(left_figure,left_figure_path)
 	update_element(mid_figure1, mid_figure1_path)
 	update_element(mid_figure2, mid_figure2_path)
+	update_element(right_figure, right_figure_path)
 
 }
 

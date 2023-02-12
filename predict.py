@@ -25,7 +25,7 @@ def predict_speaker(x_input):
     # Standardize the input features
     x_input = sc_fingerprint.transform(x_input.reshape(1, -1))
     # Plot the feature importance bar plot
-    utils.plot_feature_importance_bar(pd.DataFrame(x_fingerprint_features), x_input, classifier_fingerprint)
+    utils.plot_pie_chart(classifier_fingerprint, x_input)
     # Predict the speaker identification based on the input features
     speaker_id = classifier_fingerprint.predict(x_input)
 

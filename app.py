@@ -28,15 +28,15 @@ def index():
         # Predict the speaker using the audio features
         speaker = predict.predict_speaker(user_input)
         # Check the password for the speaker
-        # password = predict.predict_password(user_input)
-        password = utils.check_password('audio.wav')
+        password = utils.check_password('audio.wav')  # Predict using audio-to-text google API
+        # password = predict.predict_password(user_input) # Toggle to predict password using ML model
         # Return different responses based on the results of speaker and password predictions
         if speaker == "User":
-            return "You are not" + ", " + "Registered"
+            return "Sorry" + ", " + "You are not Registered"
         if password == 0:
-            return "Welcome "+str(speaker) + ", " + "Invalid Password"
+            return "Sorry "+str(speaker) + ", " + "Invalid Password"
         if password == 1 and not speaker == "User":
-            return "Welcome " + str(speaker) + ", " + "Correct Password"
+            return "Hello " + str(speaker) + ", " + "Correct Password"
     else:
         # Return the HTML template for GET requests
         return render_template("index.html")

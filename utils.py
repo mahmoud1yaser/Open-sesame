@@ -7,6 +7,7 @@ import speech_recognition
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 import pickle
+plt.style.use('ggplot')
 
 
 # Read pickle function
@@ -165,72 +166,25 @@ def check_password(wav):
         return 0
 
 
-def plot_feature_importance_bar(X, user_input, classifier, features_number=10):
-    """
-        Plot the feature importance of a classifier as a bar graph.
-
-        Parameters:
-            X (DataFrame): the feature data
-            user_input (ndarray): the user's input data
-            classifier (object): the trained classifier
-            features_number (int): the number of features to plot (default=10)
-
-        Returns:
-            None
-        """
-    # Make a prediction on the user's input data
-    user_prediction = classifier.predict(user_input)
-
-    # Get the confidence score of the prediction
-    confidence_score = classifier.predict_proba(user_input)[0][user_prediction[0]]
-
-    # Get the feature importances from the classifier
-    importances = classifier.feature_importances_
-
-    # Get the indices of the top 10 most important features
-    indices = np.argsort(importances)[::-1][:features_number]
-
-    # Plot the feature importances of the top 10 features based on the confidence score
-    fig, ax = plt.subplots(figsize=(7, 5))
-    ax.barh(range(features_number), importances[indices], align='center', color='#0062d6')
-    ax.set_yticks(range(features_number))
-    ax.set_yticklabels(X.columns[indices])
-    ax.set_xlabel('Feature Importance')
-    ax.set_title('Feature Importance Plot Based on Confidence Score')
-    ax.text(0.97, 0.94, 'Score: {:.2f}'.format(confidence_score), ha='right', va='bottom',
-            transform=ax.transAxes, fontsize=14, fontweight='bold')
-    plt.tight_layout()
-    fig.savefig('static\\assets\\dynamic_plot.png')
-
-
-def plot_feature_importance_scatter(X, user_input, classifier, features_number=10):
-    """
-        Plot the feature importance of a classifier as a scatter graph.
-
-        Parameters:
-            X (DataFrame): the feature data
-            user_input (ndarray): the user's input data
-            classifier (object): the trained classifier
-            features_number (int): the number of features to plot (default=10)
-
-        Returns:
-            None
-        """
+def plot_pie_chart(classifier, user_input):
     user_prediction = classifier.predict(user_input)
     confidence_score = classifier.predict_proba(user_input)[0][user_prediction[0]]
 
-    importances = classifier.feature_importances_
-    indices = np.argsort(importances)[::-1][:features_number]
+    # Check if user input is in range [0, 100]
+    if not 0 <= confidence_score <= 1:
+        raise ValueError("Confidence Score must be in the range [0, 1].")
 
+    # Set the color palette for the pie chart
+    colors = ['#42719d', '#bcd0e9']
+
+    # Divide the user input into two parts
+    part1 = confidence_score
+    part2 = 1 - confidence_score
+
+    # Plot the pie chart
     fig, ax = plt.subplots(figsize=(7, 5))
-    c = ax.scatter(importances[indices], range(features_number), c=[confidence_score] * features_number, cmap='Blues')
-    ax.set_yticks(range(features_number))
-    ax.set_yticklabels(X.columns[indices])
-    ax.set_xlabel('Feature Importance')
-    ax.set_title('Feature Importance Plot Based on Confidence Score')
-    ax.text(0.95, 0.95, 'Input Confidence Score: {:.2f}'.format(confidence_score), ha='right', va='bottom',
-            transform=ax.transAxes, fontsize=12)
-    plt.colorbar(c, ax=ax).set_label('Confidence Score')
+    ax.pie([part1, part2], colors=colors, startangle=90, counterclock=False)
+    ax.axis('equal')
+    plt.legend(["Confidence Score: {:.2f}".format(confidence_score), "Uncertainty Score: {:.2f}".format(1 - confidence_score)])
     plt.tight_layout()
-    fig.savefig('static\\assets\\dynamic_plot.png')
-
+    fig.savefig('static\\assets\\dynamic_pie_chart.png')
