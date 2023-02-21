@@ -61,7 +61,7 @@
 
 ## Preview
   
-  ![Alt text](static\assets\web.png)
+  ![Alt text](web.png)
 
 
 
