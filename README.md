@@ -20,7 +20,8 @@
     - others
 
 ## Description
-   This is a web app that can recognize speech and verify voices in a form of Voice Command Door Lock that opens if the owners say the correct password "open the door".
+   - This is a web app that can recognize speech and verify voices in a form of Voice Command Door Lock that opens if the owners say the correct password "open the door".
+   - The web page is an E-poster contains some information about the used data features, ML pipeline, the decision tree of the model , a section to test the app and a pie chart to show the confidence score of the result.
 
 ## Machine Learning Process
  - We have followed the full machine learning pipeline used in the industry, from data acquisition to models deployment, and here are the steps:
