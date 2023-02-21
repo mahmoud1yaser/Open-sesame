@@ -61,7 +61,7 @@
 
 ## Preview
   
-  ![plot](static\assets\web.png)
+  ![Alt text](static\assets\web.png)
 
 
 
