@@ -1,36 +1,47 @@
-from flask import Flask
-from flask import request
-from flask import render_template
-import password_model
-import speaker_model
-import utils
+# Importing necessary libraries and modules
+from flask import Flask, request, render_template
+import predict # Custom module for audio fingerprint prediction
+import utils # Custom module for utility functions
 import warnings
+
+# Ignoring warnings for a cleaner output
 warnings.filterwarnings("ignore")
 
-
+# Creating Flask application object
 app = Flask(__name__)
 
 
+# Defining route for the index page
 @app.route("/", methods=['POST', 'GET'])
 def index():
+    # Check if the request is a POST request
     if request.method == "POST":
+        # Get the audio data from the POST request
         f = request.files['audio_data']
+        # Save the audio data to a local file
         with open('audio.wav', 'wb') as audio:
             f.save(audio)
         print('file uploaded successfully')
 
-        speaker = speaker_model.predict_speaker()
-        # password = password_model.predict_password()
-        password = utils.check_word('audio.wav')
+        # Get the audio features from the saved audio file
+        user_input = utils.get_audio_features()
+        # Predict the speaker using the audio features
+        speaker = predict.predict_speaker(user_input)
+        # Check the password for the speaker
+        password = utils.check_password('audio.wav')  # Predict using audio-to-text google API
+        # password = predict.predict_password(user_input) # Toggle to predict password using ML model
+        # Return different responses based on the results of speaker and password predictions
         if speaker == "User":
-            return "You are not" + ", " + "Registered"
+            return "Sorry" + ", " + "You are not Registered"
         if password == 0:
-            return "Welcome "+str(speaker) + ", " + "Invalid Password"
+            return "Sorry "+str(speaker) + ", " + "Invalid Password"
         if password == 1 and not speaker == "User":
-            return "Welcome " + str(speaker) + ", " + "Correct Password"
+            return "Hello " + str(speaker) + ", " + "Correct Password"
     else:
+        # Return the HTML template for GET requests
         return render_template("index.html")
 
 
+# Running the application
 if __name__ == "__main__":
     app.run(debug=True)
